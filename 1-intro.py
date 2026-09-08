@@ -1,10 +1,16 @@
 import cv2
 import numpy as np
 
-# FILTER GAMBAR
+
+# READ IMAGE
 img = cv2.imread("gambarcontoh.webp")
 
-# Membuat gambar
+# SHOW IMAGE
+cv2.imshow("Image", img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+# FILTER COLOR IMAGE
 red = np.zeros_like(img)
 green = np.zeros_like(img)
 blue = np.zeros_like(img)
@@ -26,8 +32,7 @@ cv2.imshow("Grayscale", gray)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
-
-# FILTER WEBCAM
+# FILTER COLOR VIDEO
 cap = cv2.VideoCapture(0)
 
 while True:
@@ -42,7 +47,7 @@ while True:
     # Filter 0 = biru, 1 = hijau, 2 = merah
     filter[:, :, 2] = frame[:, :, 2]
 
-    # Filter
+    # Hasil
     cv2.imshow("Filter", filter)
 
     # Tekan ESC untuk keluar
