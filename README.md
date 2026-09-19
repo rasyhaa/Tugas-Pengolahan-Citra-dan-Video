@@ -1,3 +1,3 @@
-Muhammad Rasyha Syauqi Islam
+**Nama:** Muhammad Rasyha Syauqi Islam
 
-**NRP:** [5024241066]
+**NRP:** 5024241066
