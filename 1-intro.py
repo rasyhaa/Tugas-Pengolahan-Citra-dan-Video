@@ -3,6 +3,7 @@ import numpy as np
 
 
 # READ IMAGE
+
 img = cv2.imread("gambarcontoh.webp")
 
 # SHOW IMAGE
@@ -10,12 +11,14 @@ cv2.imshow("Image", img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
+
 # FILTER COLOR IMAGE
+
 red = np.zeros_like(img)
 green = np.zeros_like(img)
 blue = np.zeros_like(img)
 
-# Filter
+# Filter warna
 red[:, :, 2] = img[:, :, 2]
 green[:, :, 1] = img[:, :, 1]
 blue[:, :, 0] = img[:, :, 0]
@@ -32,27 +35,103 @@ cv2.imshow("Grayscale", gray)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
-# FILTER COLOR VIDEO
+
+# FILTER COLOR WEBCAM
+
 cap = cv2.VideoCapture(0)
 
 while True:
     ret, frame = cap.read()
 
     if not ret:
+        print("Kamera tidak dapat dibuka!")
         break
 
-    # Membuat gambar
-    filter = np.zeros_like(frame)
+    # FILTER RGB
 
-    # Filter 0 = biru, 1 = hijau, 2 = merah
-    filter[:, :, 2] = frame[:, :, 2]
+    # Original
+    original = frame.copy()
 
-    # Hasil
-    cv2.imshow("Filter", filter)
+    # Red
+    red_filter = np.zeros_like(frame)
+    red_filter[:, :, 2] = frame[:, :, 2]
 
-    # Tekan ESC untuk keluar
+    # Green
+    green_filter = np.zeros_like(frame)
+    green_filter[:, :, 1] = frame[:, :, 1]
+
+    # Blue
+    blue_filter = np.zeros_like(frame)
+    blue_filter[:, :, 0] = frame[:, :, 0]
+
+    # GABUNGKAN SEMUA FILTER
+
+    # Ukuran frame
+    height, width = frame.shape[:2]
+
+    # Gabungkan horizontal:
+    # Original | Red
+    atas = np.hstack((original, red_filter))
+
+    # Green | Blue
+    bawah = np.hstack((green_filter, blue_filter))
+
+    # Gabungkan vertikal
+    hasil = np.vstack((atas, bawah))
+
+
+    # LABEL
+
+    cv2.putText(
+        hasil,
+        "ORIGINAL",
+        (20, 35),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        1,
+        (255, 255, 255),
+        2
+    )
+
+    cv2.putText(
+        hasil,
+        "RED",
+        (width + 20, 35),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        1,
+        (255, 255, 255),
+        2
+    )
+
+    cv2.putText(
+        hasil,
+        "GREEN",
+        (20, height + 35),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        1,
+        (255, 255, 255),
+        2
+    )
+
+    cv2.putText(
+        hasil,
+        "BLUE",
+        (width + 20, height + 35),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        1,
+        (255, 255, 255),
+        2
+    )
+
+
+    # SHOW
+    cv2.imshow("Webcam RGB Filter", hasil)
+
+
+    # ESC untuk keluar
     if cv2.waitKey(1) == 27:
         break
+
+# RELEASE
 
 cap.release()
 cv2.destroyAllWindows()
