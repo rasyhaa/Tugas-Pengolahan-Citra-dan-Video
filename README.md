@@ -6,9 +6,9 @@
 
 ## Deskripsi
 
-**Tugas 1** merupakan tugas pengenalan dasar pada mata kuliah **Pengolahan Citra dan Video (PCV)**. Pada tugas ini dilakukan penerapan dasar pengolahan citra dan video menggunakan **Python, OpenCV, dan NumPy**.
+Tugas 1 merupakan tugas pengenalan dasar pada mata kuliah Pengolahan Citra dan Video. Pada tugas ini dilakukan penerapan dasar pengolahan citra dan video menggunakan Python, OpenCV, dan NumPy.
 
-Proses yang dilakukan meliputi pembacaan dan penampilan citra, pemisahan kanal warna **Red, Green, dan Blue (RGB)**, konversi citra menjadi **grayscale**, serta penerapan filter warna **RGB pada webcam secara real-time**.
+Proses yang dilakukan meliputi pembacaan dan penampilan citra, pemisahan kanal warna Red, Green, dan Blue (RGB), konversi citra menjadi grayscale, serta penerapan filter warna RGB pada webcam secara real-time.
 
 ## Dokumentasi Hasil
 
